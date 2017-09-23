@@ -1,0 +1,25 @@
+<p>
+  task works!
+</p>
+
+<div class="container">
+  <form class="well" (submit)="addTask($event)">
+        <input type="text" class="form-control" [(ngModel)]="title" name="title" placeholder="Add Task.." >
+  </form>
+  <div class="jumbotron task-list">
+        <div *ngFor="let task of tasks">
+          <div class="col-md-1">
+            <input type="checkbox" name="isDone" [checked]="task.isDone" (click)="updateStatus(task)" >
+          </div>
+          <div class="col-md-7">
+            <div *ngIf="task.isDone;else show" style="text-decoration:line-through;">{{task.title}}</div>
+            <ng-template #show>{{task.title}}</ng-template>
+          </div>
+          <div class="col-md-4">
+            <button class="btn btn-danger" (click)="deleteTask(task._id)" >Delete</button>
+          </div>
+          <br><br>
+        </div>
+  </div>
+</div>
+
